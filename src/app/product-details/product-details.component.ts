@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
 
 import { products } from '../products';
 import { CartService } from '../cart.service'
+import { DialogBodyComponent } from '../dialog-body/dialog-body.component';
 
 @Component({
   selector: 'app-product-details',
@@ -12,11 +14,17 @@ import { CartService } from '../cart.service'
 export class ProductDetailsComponent implements OnInit {
   product
 
-  constructor(private route: ActivatedRoute, private cartService: CartService) { }
+  constructor(private route: ActivatedRoute, private cartService: CartService, private matDialog: MatDialog) { }
 
   addToCart(product) {
     this.cartService.addToCart(product)
-    window.alert('Added successfully!')
+    this.openDialog()
+  }
+
+  openDialog() {
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.data = 'Added successfully!'
+    this.matDialog.open(DialogBodyComponent, dialogConfig)
   }
 
   ngOnInit(): void {

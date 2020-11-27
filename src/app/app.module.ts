@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
@@ -11,6 +12,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { CartComponent } from './cart/cart.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ShippingComponent } from './shipping/shipping.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogBodyComponent } from './dialog-body/dialog-body.component';
 
 @NgModule({
   imports: [
@@ -22,7 +25,9 @@ import { ShippingComponent } from './shipping/shipping.component';
       { path: 'cart', component: CartComponent },
       { path: 'shipping', component: ShippingComponent }
     ]),
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     AppComponent,
@@ -31,9 +36,11 @@ import { ShippingComponent } from './shipping/shipping.component';
     ProductAlertsComponent,
     ProductDetailsComponent,
     CartComponent,
-    ShippingComponent
+    ShippingComponent,
+    DialogBodyComponent
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogBodyComponent]
 })
 export class AppModule { }
 
